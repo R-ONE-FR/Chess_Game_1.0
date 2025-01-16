@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chess_UI_1._0"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1080" Width="1820"
+        Icon="Assets/icon.ico"
+        >
     <Grid>
-
+        <Image Margin="25,25,935,25" Source="/Assets/Board.png" Stretch="Fill"/>
     </Grid>
 </Window>

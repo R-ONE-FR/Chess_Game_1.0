@@ -4,9 +4,51 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>Chess_UI_1._0</RootNamespace>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\bb.png" />
+    <None Remove="Assets\bk.png" />
+    <None Remove="Assets\bn.png" />
+    <None Remove="Assets\Board.png" />
+    <None Remove="Assets\bp.png" />
+    <None Remove="Assets\bq.png" />
+    <None Remove="Assets\br.png" />
+    <None Remove="Assets\CursorB.cur" />
+    <None Remove="Assets\CursorW.cur" />
+    <None Remove="Assets\icon.ico" />
+    <None Remove="Assets\wb.png" />
+    <None Remove="Assets\wk.png" />
+    <None Remove="Assets\wn.png" />
+    <None Remove="Assets\wp.png" />
+    <None Remove="Assets\wq.png" />
+    <None Remove="Assets\wr.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Chess_Logic_1.0\Chess_Logic_1.0.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\bb.png" />
+    <Resource Include="Assets\bk.png" />
+    <Resource Include="Assets\bn.png" />
+    <Resource Include="Assets\Board.png" />
+    <Resource Include="Assets\bp.png" />
+    <Resource Include="Assets\bq.png" />
+    <Resource Include="Assets\br.png" />
+    <Resource Include="Assets\CursorB.cur" />
+    <Resource Include="Assets\CursorW.cur" />
+    <Resource Include="Assets\icon.ico" />
+    <Resource Include="Assets\wb.png" />
+    <Resource Include="Assets\wk.png" />
+    <Resource Include="Assets\wn.png" />
+    <Resource Include="Assets\wp.png" />
+    <Resource Include="Assets\wq.png" />
+    <Resource Include="Assets\wr.png" />
+  </ItemGroup>
 
 </Project>

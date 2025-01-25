@@ -32,6 +32,58 @@ namespace Chess_Logic_1._0
         private void AddStartPiece()
         {
             this[0, 0] = new Rook(Player.Black);
+            this[0, 1] = new Knight(Player.Black);
+            this[0, 2] = new Bishop(Player.Black);
+            this[0, 3] = new Queen(Player.Black);
+            this[0, 4] = new King(Player.Black);
+            this[0, 5] = new Bishop(Player.Black);
+            this[0, 6] = new Knight(Player.Black);
+            this[0, 7] = new Rook(Player.Black);
+
+            this[7, 0] = new Rook(Player.White);
+            this[7, 1] = new Knight(Player.White);
+            this[7, 2] = new Bishop(Player.White);
+            this[7, 3] = new Queen(Player.White);
+            this[7, 4] = new King(Player.White);
+            this[7, 5] = new Bishop(Player.White);
+            this[7, 6] = new Knight(Player.White);
+            this[7, 7] = new Rook(Player.White);
+
+            for (int i = 0; i < 8; i++)
+            {
+                this[1, i] = new Pawn(Player.Black);
+                this[6, i] = new Pawn(Player.White);
+            }
+            /*
+            this[1, 0] = new Pawn(Player.Black);
+            this[1, 1] = new Pawn(Player.Black);
+            this[1, 2] = new Pawn(Player.Black);
+            this[1, 3] = new Pawn(Player.Black);
+            this[1, 4] = new Pawn(Player.Black);
+            this[1, 5] = new Pawn(Player.Black);
+            this[1, 6] = new Pawn(Player.Black);
+            this[1, 7] = new Pawn(Player.Black);
+
+
+            this[6, 0] = new Pawn(Player.White);
+            this[6, 1] = new Pawn(Player.White);
+            this[6, 2] = new Pawn(Player.White);
+            this[6, 3] = new Pawn(Player.White);
+            this[6, 4] = new Pawn(Player.Black);
+            this[6, 5] = new Pawn(Player.White);
+            this[6, 6] = new Pawn(Player.White);
+            this[6, 7] = new Pawn(Player.White);
+            */
+        }
+
+        public static bool IsInside(Position pos)
+        {
+            return pos.Row >= 0 && pos.Row < 8 && pos.Column >= 0 && pos.Column < 8;
+        }
+
+        public bool IsEmpty(Position pos)
+        {
+            return this[pos] == null;
         }
     }
 }

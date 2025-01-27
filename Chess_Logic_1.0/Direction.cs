@@ -30,7 +30,5 @@
         {
             return new Direction(scalar * dir.RowDelta, scalar * dir.ColumnDelta);
         }
-
-
     }
 }

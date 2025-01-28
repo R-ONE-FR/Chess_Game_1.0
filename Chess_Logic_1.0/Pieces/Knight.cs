@@ -6,6 +6,14 @@
 
         public override Player Color { get; }
 
+        private static readonly Direction[] dirs = new Direction[]
+        {
+            Direction.NortWest,
+            Direction.SouthWest,
+            Direction.NortEast,
+            Direction.SouthEast
+        };
+
         public Knight(Player color)
         {
             Color = color;

@@ -10,7 +10,7 @@ namespace Chess_UI_1._0
         {
             { PieceType.Pawn, LoadImage("Assets/wp.png") },
             { PieceType.Bishop, LoadImage("Assets/wb.png") },
-            { PieceType.Knight, LoadImage("Assets/wk.png") },
+            { PieceType.Knight, LoadImage("Assets/wn.png") },
             { PieceType.Rook, LoadImage("Assets/wr.png") },
             { PieceType.Queen, LoadImage("Assets/wq.png") },
             { PieceType.King, LoadImage("Assets/wk.png") }
@@ -20,7 +20,7 @@ namespace Chess_UI_1._0
         {
             { PieceType.Pawn, LoadImage("Assets/bp.png") },
             { PieceType.Bishop, LoadImage("Assets/bb.png") },
-            { PieceType.Knight, LoadImage("Assets/bk.png") },
+            { PieceType.Knight, LoadImage("Assets/bn.png") },
             { PieceType.Rook, LoadImage("Assets/br.png") },
             { PieceType.Queen, LoadImage("Assets/bq.png") },
             { PieceType.King, LoadImage("Assets/bk.png") }

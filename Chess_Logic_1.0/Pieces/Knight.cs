@@ -1,18 +1,12 @@
-﻿namespace Chess_Logic_1._0
+﻿using Chess_Logic_1._0.Moves;
+
+namespace Chess_Logic_1._0
 {
     public class Knight : Piece
     {
         public override PieceType Type => PieceType.Knight;
 
         public override Player Color { get; }
-
-        private static readonly Direction[] dirs = new Direction[]
-        {
-            Direction.NortWest,
-            Direction.SouthWest,
-            Direction.NortEast,
-            Direction.SouthEast
-        };
 
         public Knight(Player color)
         {
@@ -26,5 +20,26 @@
             return copy;
         }
 
+        private static IEnumerable<Position> PotentialToPositions(Position from)
+        {
+            foreach (Direction vDir in new Direction[] { Direction.North, Direction.South })
+            {
+                foreach (Direction hDir in new Direction[] { Direction.East, Direction.West })
+                {
+                    yield return from + 2 * vDir + hDir;
+                    yield return from + 2 * hDir + vDir;
+                }
+            }
+        }
+
+        private IEnumerable<Position> MovePositions(Position from, Board board)
+        {
+            return PotentialToPositions(from).Where(pos => Board.IsInside(pos) && (board.IsEmpty(pos) || board[pos].Color != Color));
+        }
+
+        public override IEnumerable<Move> GetMoves(Position from, Board board)
+        {
+            return MovePositions(from, board).Select(to => new NormalMove(from, to));
+        }
     }
 }

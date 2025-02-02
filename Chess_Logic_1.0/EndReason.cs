@@ -12,6 +12,6 @@ namespace Chess_Logic_1._0
         Stalemate,
         FiftyMoveRule,
         InsufficientMaterial,
-        ThreefoldRepetition;
+        ThreefoldRepetition
     }
 }

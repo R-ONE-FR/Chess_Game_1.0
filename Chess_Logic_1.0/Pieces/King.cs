@@ -33,7 +33,7 @@ namespace Chess_Logic_1._0
             return copy;
         }
 
-        private IEnumerable<Position> MovesPositions(Position from, Board board)
+        private IEnumerable<Position> MovePositions(Position from, Board board)
         {
             foreach (Direction dir in dirs)
             {
@@ -53,10 +53,19 @@ namespace Chess_Logic_1._0
 
         public override IEnumerable<Move> GetMoves(Position from, Board board)
         {
-            foreach (Position to in MovesPositions(from, board))
+            foreach (Position to in MovePositions(from, board))
             {
                 yield return new NormalMove(from, to);
             }
+        }
+
+        public override bool CanCaptureOpponentKing(Position from, Board board)
+        {
+            return MovePositions(from, board).Any(to =>
+            {
+                Piece piece = board[to];
+                return piece != null && piece.Type == PieceType.King;
+            });
         }
     }
 }

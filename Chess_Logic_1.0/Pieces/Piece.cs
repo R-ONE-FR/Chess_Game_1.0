@@ -31,7 +31,6 @@ namespace Chess_Logic_1._0
                 {
                     yield return pos;
                 }
-
                 yield break;
             }
         }
@@ -39,6 +38,15 @@ namespace Chess_Logic_1._0
         protected IEnumerable<Position> MovePositionsInDirs(Position from, Board board, Direction[] dirs)
         {
             return dirs.SelectMany(dir => MovePositionInDir(from, board, dir));
+        }
+
+        public virtual bool CanCaptureOpponentKing(Position from, Board board) 
+        { 
+            return GetMoves(from, board).Any(move => 
+            {
+                Piece piece = board[move.ToPos];
+                return piece != null && piece.Type == PieceType.King;
+            });
         }
     }
 }

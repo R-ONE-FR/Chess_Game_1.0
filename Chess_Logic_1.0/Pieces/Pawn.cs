@@ -44,18 +44,37 @@ namespace Chess_Logic_1._0
             return board[pos].Color != Color;
         }
 
+        private static IEnumerable<Move> PromotionMoves(Position from, Position to)
+        {
+            yield return new PawnPromotion(from, to, PieceType.Bishop);
+            yield return new PawnPromotion(from, to, PieceType.Rook);
+            yield return new PawnPromotion(from, to, PieceType.Knight);
+            yield return new PawnPromotion(from, to, PieceType.Queen);
+        }
+
         private IEnumerable<Move> ForwardMoves(Position from, Board board)
         { 
             Position oneMovePos = from + forward;
 
-            if (CanMoveTo(oneMovePos, board)) {
-                yield return new NormalMove(from, oneMovePos);
+            if (CanMoveTo(oneMovePos, board)) 
+            {
+                if (oneMovePos.Row == 0 || oneMovePos.Row == 7)
+                {
+                    foreach (Move promMove in PromotionMoves(from, oneMovePos))
+                    {
+                        yield return promMove;
+                    }
+                }
+                else
+                {
+                    yield return new NormalMove(from, oneMovePos);
+                }
 
                 Position twoMovesPos = oneMovePos + forward;
 
                 if (!HasMoved && CanMoveTo(twoMovesPos, board))
-                { 
-                    yield return new NormalMove(from, twoMovesPos);
+                {
+                    yield return new DoublePawn(from, twoMovesPos);
                 }
             }
         }
@@ -66,9 +85,23 @@ namespace Chess_Logic_1._0
             {
                 Position to = from + forward + dir;
 
-                if (CanCapture(to, board))
+                if (to == board.GetPawnSkipPosition(Color.Opponnent()))
                 {
-                    yield return new NormalMove(from, to);
+                    yield return new EnPassant(from, to);
+                }
+                else if (CanCapture(to, board))
+                {
+                    if (to.Row == 0 || to.Row == 7)
+                    {
+                        foreach (Move promMove in PromotionMoves(from, to))
+                        {
+                            yield return promMove;
+                        }
+                    }
+                    else
+                    {
+                        yield return new NormalMove(from, to);
+                    }
                 }
             }
         }

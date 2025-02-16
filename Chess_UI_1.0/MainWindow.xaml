@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         Icon="Assets/icon.ico"
         Background="#353535"
-        >
+        KeyDown="Winow_KeyDown">
     <Viewbox>
         <Grid x:Name="BoardGrid" Width="800" Height="800" MouseDown="BoardGrid_MouseDown">
             <Grid.Background>

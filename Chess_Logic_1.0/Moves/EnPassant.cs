@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,10 +22,12 @@ namespace Chess_Logic_1._0.Moves
             capturePos = new Position(from.Row, to.Column);
         }
 
-        public override void Execute(Board board)
+        public override bool Execute(Board board)
         {
             new NormalMove(FromPos, ToPos).Execute(board);
             board[capturePos] = null;
+
+            return true;
         }
     }
 }

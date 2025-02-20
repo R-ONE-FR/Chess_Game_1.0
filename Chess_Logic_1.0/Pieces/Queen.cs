@@ -14,8 +14,8 @@ namespace Chess_Logic_1._0
             Direction.South,
             Direction.East,
             Direction.West,
-            Direction.NortEast,
-            Direction.NortWest,
+            Direction.NorthEast,
+            Direction.NorthWest,
             Direction.SouthEast,
             Direction.SouthWest
         };

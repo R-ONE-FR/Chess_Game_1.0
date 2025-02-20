@@ -10,9 +10,9 @@ namespace Chess_Logic_1._0
 
         private static readonly Direction[] dirs = new Direction[]
         {
-            Direction.NortWest,
+            Direction.NorthWest,
             Direction.SouthWest,
-            Direction.NortEast,
+            Direction.NorthEast,
             Direction.SouthEast
         };
 

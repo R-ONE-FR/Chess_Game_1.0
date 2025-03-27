@@ -6,7 +6,7 @@ namespace Chess_Logic_1._0
     {
         public override MoveType Type => MoveType.DoublePawn;
         public override Position FromPos { get; }
-       public override Position ToPos { get; }
+        public override Position ToPos { get; }
 
         private readonly Position skippedPos;
 

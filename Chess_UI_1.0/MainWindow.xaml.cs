@@ -3,7 +3,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Diagnostics;
 using Chess_Logic_1._0;
+using System.IO;
 
 namespace Chess_UI_1._0
 {
@@ -26,7 +28,16 @@ namespace Chess_UI_1._0
             gameState = new GameState(Player.White, Board.Initial());
             DrawBoard(gameState.Board);
             SetCursor(gameState.CurrentPlayer);
+            //Stockfish test = new Stockfish();
+            StartStockfish();
+
+            //Process ebc = test.StartStockfish();
         }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e) => Close();
+        private void BtnMaximize_Click(object sender, RoutedEventArgs e) => this.WindowState = this.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e) => this.WindowState = WindowState.Minimized;
+    
 
         private void InitializedBoard()
         {
@@ -39,11 +50,16 @@ namespace Chess_UI_1._0
                     PieceGrid.Children.Add(image);
 
                     Ellipse highlight = new Ellipse();
+                    highlight.Width = 45;  // Largeur de l'ellipse
+                    highlight.Height = 45; // Hauteur de l'ellipse
+                    highlight.Fill = new SolidColorBrush(Colors.Transparent); // Optionnel
+
                     highlights[i, j] = highlight;
                     HighlightGrid.Children.Add(highlight);
                 }
             }
         }
+
 
         private void DrawBoard(Board board)
         {
@@ -155,7 +171,7 @@ namespace Chess_UI_1._0
 
         private void ShowHighlights()
         {
-            Color color = Color.FromArgb(140, 45, 45, 45);
+            Color color = Color.FromArgb(200, 22, 22, 22);
 
             foreach (Position to in moveCache.Keys)
             {
@@ -239,6 +255,65 @@ namespace Chess_UI_1._0
                     RestartGame();
                 }
             };
+        }
+
+
+
+
+        private Process stockfishProcess;
+        private StreamWriter stockfishInput;
+        private StreamReader stockfishOutput;
+
+        private void StartStockfish()
+        {
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "stockfish-windows-x86-64-avx2.exe",
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            stockfishProcess = new Process { StartInfo = psi };
+            stockfishProcess.Start();
+
+            stockfishInput = stockfishProcess.StandardInput;
+            stockfishOutput = stockfishProcess.StandardOutput;
+
+            // Lire les réponses de Stockfish en arrière-plan
+            Task.Run(() => ReadStockfishOutput());
+        }
+
+        private async Task ReadStockfishOutput()
+        {
+            string response;
+            while ((response = await stockfishOutput.ReadLineAsync()) != null)
+            {
+                // Mettre à jour l'UI en utilisant Dispatcher.Invoke
+                Dispatcher.Invoke(() => outputTextBox.AppendText(response + Environment.NewLine));
+                StateString test2 = new StateString(gameState.CurrentPlayer, gameState.Board);
+                Dispatcher.Invoke(() => outputTextBox.AppendText(test2.ToString()));
+            }
+        }
+
+        private async void SendCommand(object sender, RoutedEventArgs e)
+        {
+            string command = commandTextBox.Text;
+            if (!string.IsNullOrEmpty(command) && stockfishProcess != null && !stockfishProcess.HasExited)
+            {
+                await stockfishInput.WriteLineAsync(command);
+                commandTextBox.Clear();
+            }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (stockfishProcess != null && !stockfishProcess.HasExited)
+            {
+                stockfishProcess.Kill();
+                stockfishProcess.Dispose();
+            }
         }
     }
 }

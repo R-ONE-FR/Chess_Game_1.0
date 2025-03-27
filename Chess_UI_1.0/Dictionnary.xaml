@@ -1,0 +1,112 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
+
+    <!--Début: BackgroundColors-->
+    <RadialGradientBrush x:Key="PrimaryBackground" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <GradientStop Color="#333" Offset="1"/>
+        <GradientStop Color="#353535" Offset="0"/>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="SecondaryBackground" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <GradientStop Color="#222" Offset="0"/>
+        <GradientStop Color="#252525" Offset="1"/>
+    </RadialGradientBrush>
+    <!--Fin: BackgroundColors-->
+
+
+
+    <!--Début: TetrisBackgroundColors-->
+    <RadialGradientBrush x:Key="TetrisBackground" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <GradientStop Color="#6d1cae" Offset="1"/>
+        <GradientStop Color="#8537ec" Offset="0.5"/>
+        <GradientStop Color="#b772e4" Offset="0"/>
+    </RadialGradientBrush>
+    <!--Fin: TetrisBackgroundColors-->
+
+
+
+    <!--Début: Border Colors-->
+    <SolidColorBrush x:Key="BorderBrush" Color="#111"/>
+    <!--Fin: Border Colors-->
+
+
+    <!--Début: FontColors-->
+    <SolidColorBrush x:Key="Font" Color="LightGray"/>
+    <SolidColorBrush x:Key="Close" Color="#FF0000"/>
+    <SolidColorBrush x:Key="Hover" Color="#48b7c8"/>
+    <!--Fin: FontColors-->
+
+    <!--Début: CtrlBtn-->
+    <Style x:Key="CtrlBtn" TargetType="Button">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource Font}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <!--Début: BtnHoover-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+        </Style.Triggers>
+        <!--Fin: BtnHoover-->
+    </Style>
+    <!--Fin: CtrlBtn-->
+
+    <!--Début: CtrlBtnIcon-->
+    <Style x:Key="CtrlBtnIcon" TargetType="fa:IconImage">
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        <Setter Property="Width" Value="11"/>
+    </Style>
+    <!--Fin: CtrlBtnIcon-->
+    
+    <!--Début Couleur Coordonées Echecs-->
+    <!--<Color x:Key="dark-coordinate" Color="#8d675e"/>-->
+    <!--< x:Key="light-coordinate" Color="#e7cdb2"/>-->
+    <!--Fin Couleur Coordonées Echecs-->
+
+    <SolidColorBrush x:Key="StrokeColor">#260000</SolidColorBrush>
+    <SolidColorBrush x:Key="FillColor">#cc380404</SolidColorBrush>
+    <SolidColorBrush x:Key="TextColor">#ffa274</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonColor">#730909</SolidColorBrush>
+
+    <Style TargetType="Border" x:Key="BorderStyle">
+        <Setter Property="BorderThickness" Value="4"/>
+        <Setter Property="BorderBrush" Value="{StaticResource StrokeColor}"/>
+        <Setter Property="Background" Value="{StaticResource FillColor}"/>
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="TextStyle">
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ButtonStyle">
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="{StaticResource StrokeColor}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+</ResourceDictionary>

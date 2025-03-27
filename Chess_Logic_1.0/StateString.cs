@@ -8,7 +8,7 @@ namespace Chess_Logic_1._0
 
         public StateString(Player currentPlayer, Board board)
         {
-            AddPiecePLacement(board);
+            AddPiecePlacement(board);
             sb.Append(' ');
             AddCurrentPlayer(currentPlayer);
             sb.Append(' ');
@@ -72,7 +72,7 @@ namespace Chess_Logic_1._0
             }
         }
 
-        private void AddPiecePLacement(Board board)
+        private void AddPiecePlacement(Board board)
         {
             for (int i = 0; i < 8; i++)
             {
@@ -82,7 +82,7 @@ namespace Chess_Logic_1._0
                 }
                 AddRowData(board, i);
              }
-
+             
         }
 
         private void AddCurrentPlayer(Player currentPlayer)
